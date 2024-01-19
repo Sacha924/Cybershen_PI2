@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  web:
+    build: ./web/vue    # ./web/react
+    container_name: web-server
+    ports: 
+      - "80:80"
+    # http://app-srv:8080/managesys/
+    links:
+      - app:app-srv
+      
+  app:
+    build: ./app/rails
+    container_name: app-server
+    restart: always
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    ports:
+      - "8080:8080"
+    environment:
+      RAILS_ENV: production
+    depends_on:
+      - db
+    links:
+      - db:postgres-db
+
+  db:
+    build: ./db
+    container_name: db-server
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@s$w0rd
+      TZ: Asia/Tokyo
+    volumes:
+      # - "./pgdata:/var/lib/postgresql/data"
+      # - "./db/conf/postgresql.conf:/etc/postgresql.conf"
+      - "./db/initdb.d/rails:/docker-entrypoint-initdb.d"

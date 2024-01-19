@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: 
+    dbserver-k8s-sfs
+spec:
+  serviceName: dbserver-k8s-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dbserver-k8s-sfs
+  template:
+    metadata:
+      labels:
+        app: dbserver-k8s-sfs
+    spec:
+      containers:
+       - name: dbserver
+         image: dbserver_k8s:1.0
+         imagePullPolicy: IfNotPresent
+         ports:
+          - containerPort: 5432
+
