@@ -24,6 +24,6 @@ jobs:
           cd vuejs-webapp-sample
           npm install
           npm run build
-
+          
       - name: Build Go Web App
         run: cd go-webapp-sample && go build .
