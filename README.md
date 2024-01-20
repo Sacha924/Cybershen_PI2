@@ -52,6 +52,11 @@ The CI/CD pipeline includes several steps that focus on maintaining a high stand
 
 - Security: Checked by scanning dependencies for vulnerabilities, aiming to catch and remediate risks before they reach production.
 
+### Testing the pipeline 
+
+We can see that we find some issue if the typescript code :
+
+<img src="img-for-README/Pipeline-typescript.JPG"/>
 
 
 ## Note
