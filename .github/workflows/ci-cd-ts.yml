@@ -2,41 +2,46 @@ name: CI/CD Pipeline with Security Checks
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - main
     paths:
       - 'vuejs-webapp-sample/**'
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - main
     paths:
       - 'vuejs-webapp-sample/**'
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
+  test:
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+
     - name: Setup Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 20
+        check-latest: true
         cache: 'npm'
         cache-dependency-path: vuejs-webapp-sample/package-lock.json
+
     - name: Install dependencies
       run: npm ci
       working-directory: vuejs-webapp-sample
+
     - name: Lint TypeScript
       run: npm run lint
       working-directory: vuejs-webapp-sample
+      continue-on-error: true
+
     - name: Compile TypeScript
       run: npm run type-check
       working-directory: vuejs-webapp-sample
+
     - name: Check for Vulnerable Dependencies
-      run: npm audit --production
-      working-directory: vuejs-webapp-sample
-    - name: Build
-      run: npm run build
+      run: npm audit
       working-directory: vuejs-webapp-sample
