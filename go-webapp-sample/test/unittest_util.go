@@ -140,11 +140,6 @@ func ConvertToString(model interface{}) string {
 	return string(bytes)
 }
 
-func ConvertToString2(model interface{}) string {
-	bytes, _ := json.Marshal(model)
-	return string(bytes)
-}
-
 // NewJSONRequest func creates a new request using JSON format.
 func NewJSONRequest(method string, target string, param interface{}) *http.Request {
 	req := httptest.NewRequest(method, target, strings.NewReader(ConvertToString(param)))
