@@ -52,3 +52,10 @@ The CI/CD pipeline includes several steps that focus on maintaining a high stand
 
 - Security: Checked by scanning dependencies for vulnerabilities, aiming to catch and remediate risks before they reach production.
 
+
+
+## Note
+
+Each application should have its own .github/workflow/XXX.yml file.
+
+But in our case, as we have several applications in a github repo and to make the github workflow work, the .github must be at the root of the project, this is why we have to put our code here and specify paths to tell which application the pipeline applies to.
