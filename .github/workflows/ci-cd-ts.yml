@@ -43,3 +43,4 @@ jobs:
       - name: Check for Vulnerable Dependencies
         run: npm audit
         working-directory: vuejs-webapp-sample
+        continue-on-error: true

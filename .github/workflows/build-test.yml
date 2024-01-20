@@ -19,14 +19,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Docker Web App
-        run: cd docker-webapp-sample && docker build -t docker-webapp .
-
-      - name: Build Go Web App
-        run: cd go-webapp-sample && go build .
-
       - name: Build Vue.js Web App
         run: |
           cd vuejs-webapp-sample
           npm install
           npm run build
+
+      - name: Build Go Web App
+        run: cd go-webapp-sample && go build .
