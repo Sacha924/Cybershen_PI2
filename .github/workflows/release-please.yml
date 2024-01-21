@@ -1,0 +1,22 @@
+# work in progress
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+      #- master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: google-github-actions/release-please-action@cc61a07e2da466bebbc19b3a7dd01d6aecb20d1e
+        with:
+          release-type: node
+          package-name: release-please-action
+          changelog-types: '[{"type":"feat","section":"✨ Nouvelles fonctionnalités","hidden":false},{"type":"fix","section":"🐛 Corrections de bogues","hidden":false},{"type":"chore","section":"👷 Autres changements","hidden":false},{"type":"tech","section":"👷 Autres changements","hidden":false},{"type":"ci","section":"👷 Autres changements","hidden":false},{"type":"refacto","section":"👷 Autres changements","hidden":false},{"type":"build","section":"👷 Autres changements","hidden":false},{"type":"docs","section":"📚 Documentation","hidden":false}]'
