@@ -43,7 +43,7 @@ The pipeline, named "CI/CD Pipeline with Security Checks," is triggered on any p
 
 - Type-Check: Executes npm run type-check to perform static type-checking on the codebase, validating type correctness across the application without emitting compiled output.
 
-- Build: Runs npm run build to create a production build of the application, confirming that the application can be successfully built without errors.
+- Build: Build Go and Vuejs samples to create a web application, confirming that the application can be successfully built without errors.
 
 - Security and Quality Checks
 The CI/CD pipeline includes several steps that focus on maintaining a high standard of code quality and security:
@@ -54,7 +54,7 @@ The CI/CD pipeline includes several steps that focus on maintaining a high stand
 
 ### Testing the pipeline 
 
-We can see that we find some issue if the typescript code :
+We can see that we find some issues in the typescript code :
 
 <img src="img-for-README/Pipeline-typescript.JPG"/>
 
